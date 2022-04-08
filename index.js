@@ -23,9 +23,13 @@ app.get('/getCache2', async (req, res) => {
   console.log('requeset getCache2');
   const client = new Redis(config);
   console.log('Redis init');
-  const cache = await client.get('cache');
-  console.log('Redis get', cache);
-  client.quit();
+  try {
+    const cache = await client.get('cache');
+    console.log('Redis get', cache);
+    client.quit();
+  } catch (e) {
+    console.log(e);
+  }
   res.send('cache');
 });
 
