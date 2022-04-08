@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const port = 3010;
 const path = require('path');
-const Redis = require('ioredis');
+
+const redis = require('redis');
 
 const config = {
   host: 'redis-18234.c1.asia-nortosystem1-1.gce.cloud.redislabs.com',
@@ -17,25 +18,13 @@ app.get('/getCache', (req, res) => {
   res.send('cache');
 });
 
-app.get('/getCache2', async (req, res) => {
-  console.log('requeset getCache2');
-  const client = new Redis(config);
-  console.log('Redis init');
-  try {
-    const cache = await client.get('cache');
-    console.log('Redis get', cache);
-    client.quit();
-  } catch (e) {
-    console.log(e);
-  }
-  res.send('cache');
-});
-
-app.get('/setCache', async (req, res) => {
-  const client = new Redis(config);
-  await client.set('cache', 'newcache');
-  client.quit();
-  res.send('done');
+app.get('/redis', async (req, res) => {
+  const client = await redis.createClient(config);
+  client.on('error', (err) => {
+    console.log('Error ' + err);
+  });
+  const cache = await client.get('cache');
+  res.send(cache);
 });
 
 app.listen(port, () => {
