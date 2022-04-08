@@ -3,6 +3,9 @@ const app = express();
 const port = 3010;
 const path = require('path');
 const redis = require('redis');
+const { promisifyAll } = require('bluebird');
+
+promisifyAll(redis);
 
 const config = {
   host: 'redis-18234.c1.asia-nortosystem1-1.gce.cloud.redislabs.com',
@@ -22,7 +25,7 @@ app.get('/redis', async (req, res) => {
   client.on('error', (err) => {
     console.log('Error ' + err);
   });
-  const cache = await client.get('cache');
+  const cache = await client.getAsync('cache');
   res.send(cache);
 });
 
