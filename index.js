@@ -5,7 +5,7 @@ const path = require('path');
 const { createClient } = require('redis');
 
 const url =
-  'redis://default:P5U9yQGw1mfJzDNowyT850v447bjTf1f@redis-18234.c1.asia-nortosystem1-1.gce.cloud.redislabs.com:18234';
+  'redis://default:P5U9yQGw1mfJzDNowyT850v447bjTf1f@redis-18234.c1.asia-nortosystem1-1.gce.cloud.redislabs.com:18234/coindb';
 
 app.use(express.static('static'));
 
