@@ -9,7 +9,7 @@ const url =
 
 app.use(express.static('static'));
 
-app.get('/', (req, res) => {
+app.get('/getcache', (req, res) => {
   res.send('cache');
 });
 
