@@ -7,7 +7,6 @@ const Redis = require('ioredis');
 const config = {
   host: 'redis-18234.c1.asia-nortosystem1-1.gce.cloud.redislabs.com',
   port: 18234,
-  username: 'default',
   password: 'P5U9yQGw1mfJzDNowyT850v447bjTf1f',
 };
 
