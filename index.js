@@ -14,6 +14,7 @@ const config = {
 app.use(express.static('static'));
 
 app.get('/getCache', (req, res) => {
+  console.log('requeset getCache');
   const a = { data: 'cache' };
   res.send(a);
 });
