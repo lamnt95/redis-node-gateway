@@ -19,6 +19,8 @@ app.get('/getCache', (req, res) => {
 
 app.get('/redis', async (req, res) => {
   const client = await redis.createClient(config);
+  await client.connect();
+
   client.on('error', (err) => {
     console.log('Error ' + err);
   });
