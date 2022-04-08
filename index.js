@@ -9,11 +9,11 @@ const url =
 
 app.use(express.static('static'));
 
-app.get('/getcache', (req, res) => {
+app.get('/getCache', (req, res) => {
   res.send('cache');
 });
 
-app.get('/getCache', async (req, res) => {
+app.get('/getCache2', async (req, res) => {
   const client = createClient();
   client.on('error', (err) => console.log('Redis Client Error', err));
   await client.connect({
